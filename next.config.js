@@ -1,18 +1,18 @@
 /** @type {import('next').NextConfig} */
 
 const debug = process.env.NODE_ENV !== "production";
-const repository = "factory-typescript";
+const repository = "https://hangeol-chang.github.io/factory-typescript";
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: !debug ? `/${repository}/` : "/", 
-  // basePath : !debug ? `/${repository}/` : "",
+  assetPrefix: !debug ? `${repository}/` : "/", 
   trailingSlash: true,
 
-  // images: {
-  //   loader: 'akamai',
-  //   path: '/',
-  // }
+  images: {
+    loader: 'akamai',
+    path: '/',
+    unoptimized : true
+  }
 }
 
 module.exports = nextConfig
