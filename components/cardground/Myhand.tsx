@@ -2,7 +2,7 @@
 export default function Myhand() {
 
     return (
-        <div>
+        <div className="self-center">
             my-hand
         </div>
     )

@@ -3,7 +3,17 @@ import Myhand from "@/components/cardground/Myhand";
 
 export default function cardground() {
     return (
-        <div>
+        <div 
+            className={`
+                grid
+                flex
+                flex-col
+
+                bg-gray-100
+                justify-center
+                justify-items-center
+            `}
+        >
             cardground
             <GameBoard />
             <Myhand />

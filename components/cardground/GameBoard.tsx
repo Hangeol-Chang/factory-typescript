@@ -1,28 +1,37 @@
-import { boardSizeState } from "@/states/cardground/states";
+import { boardSizeState, boardState } from "@/states/cardground/states";
 import { ReactNode } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import GameTile from "./atom/GameTile";
 
 export default function GameBoard() {
     // a행 b열을 나타냄.
     const boardsize = useRecoilValue(boardSizeState);
+    const [board, setBoard] = useRecoilState(boardState);
 
     const MainBoard = () => {
         const row = boardsize[0];
         const col = boardsize[1];
 
-        // let board: ReactNode = [];
+        // 궁극적으로는 얘가 boardSize를 보고 만들어 return하는 형태가 되어야 함.
         
-        // for (let r = 0; r < row; r++) {
-        //     board.push(<div></div>)
-        // }
-
-        // return board;
+        return (
+            <>
+                {
+                    board.map( col => (
+                        <div className="flex m-2 gap-2">
+                            {
+                                col.map(val => (<GameTile />))
+                            }
+                        </div>
+                    ))        
+                }
+            </>
+        )
     }
     
     return (
         <div>
-            <GameTile />
+            <MainBoard />
         </div>
     )
 }   

@@ -8,6 +8,8 @@ export default function GameTile() {
                 bg-red-100
                 rounded
                 rounded-sm
+
+                /cursor-pointer
             `}
         >
             gametile
