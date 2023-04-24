@@ -5,13 +5,14 @@ declare global {
         id : number;
         img : string;
         type : string;
+        
 
-
-        constructor(id: number, img : string, type : string) {
-            this.id = id;
-            this.img = img;
-            this.type = type;
-        }
+        // declare global 안에서 정의하면 문제생기네?
+        // constructor(id: number, img : string, type : string) {
+        //     this.id = id;
+        //     this.img = img;
+        //     this.type = type;
+        // }
     }  
     export interface Event {
         x: number;
