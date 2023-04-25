@@ -4,7 +4,7 @@ const debug = process.env.NODE_ENV !== "production";
 const repository = "https://hangeol-chang.github.io/factory-typescript";
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   assetPrefix: !debug ? `${repository}/` : "/", 
   trailingSlash: true,
 

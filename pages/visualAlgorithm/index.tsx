@@ -18,6 +18,7 @@ export default function visualAlgorithm() {
         ]
 
         print(fruits)
+        print("뭐임?")
         `
     return (
         <div 
@@ -40,7 +41,7 @@ export default function visualAlgorithm() {
                 />
             </div>
 
-            <div dangerouslySetInnerHTML={{__html: `<py-terminal><py-terminal>`}} />
+            <div dangerouslySetInnerHTML={{__html: `<py-terminal />`}} />
         </div>
     )
 }   
