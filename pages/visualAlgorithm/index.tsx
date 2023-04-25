@@ -1,45 +1,46 @@
-// <!DOCTYPE html>
-// <html>
-//   <head>
-//     <script src="https://cdn.jsdelivr.net/npm/skulpt@0.11.3/dist/skulpt.min.js"></script>
-//     <script src="https://cdn.jsdelivr.net/npm/skulpt@0.11.3/dist/skulpt-stdlib.js"></script>
-//   </head>
-//   <body>
-//     <script>
-//       // Load the Python code from a local file
-//       var pythonCode = `with open("path/to/your/python/script.py", "r") as file:
-//         code = file.read()
-//         exec(code)`;
-      
-//       // Run the Python code using Skulpt
-//       Sk.configure({output: function(text) {
-//         console.log(text);
-//       }});
-//       Sk.importMainWithBody("<stdin>", false, pythonCode);
-//     </script>
-//   </body>
-// </html>
+import { useState } from "react"
 
-export default function cardground() {
-    // pyodide.loadPackage('python').then(() => {
-    //     // Run the Python script
-    //     pyodide.runPython(`
-    //         with open("path/to/your/python/script.py", "r") as f:
-    //         exec(f.read())
-    //     `).then((output) => {
-    //         console.log(output);
-    //     });
-    // });
+export default function visualAlgorithm() {
+    const [code, setCode] = useState('');
+    const code2 = `
+        import js
+        from pyodide.ffi import create_proxy, to_js
+        
+        fruits = [
+            {"name": "🍊", "count": 21},
+            {"name": "🍇", "count": 13},
+            {"name": "🍏", "count": 8},
+            {"name": "🍌", "count": 5},
+            {"name": "🍐", "count": 3},
+            {"name": "🍋", "count": 2},
+            {"name": "🍎", "count": 1},
+            {"name": "🍉", "count": 1},
+        ]
 
+        print(fruits)
+        `
     return (
         <div 
             className={`
                 
             `}
         >
-            <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
+            <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+            
+            <div className={`flex gap-2 bg-blue-100`}>
+                <textarea value={code} onChange={e => setCode(e.target.value)}></textarea>
 
-            WebAssenbly
+                <div
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        <py-script>
+                        ${code2}
+                        </py-script>`,
+                    }}
+                />
+            </div>
+
+            <div dangerouslySetInnerHTML={{__html: `<py-terminal><py-terminal>`}} />
         </div>
     )
 }   

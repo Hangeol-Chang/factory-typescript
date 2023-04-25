@@ -14,19 +14,20 @@ export default function Home() {
         <>
             <div 
                 className={`
-                    m-2 
-                    rounded 
-                    bg-blue-200
+                    m-2 rounded flex-col flex bg-blue-200
                     `}>
                 main page
 
                 <Link 
                     href={`${relativePrefix}/cardground`}
-                    className={`
-                        m-2 bg-blue-100
-                    `}
+                    className={` m-2 bg-blue-100 `}
                 >
                     cardground
+                </Link>
+                <Link href={`${relativePrefix}/visualAlgorithm`}
+                    className={` m-2 bg-blue-100`}
+                >
+                    visualAlgorithm
                 </Link>
             </div>
         </>
