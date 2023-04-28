@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function visualAlgorithm() {
     const [code, setCode] = useState('');
@@ -20,10 +20,29 @@ export default function visualAlgorithm() {
         print(fruits)
         print("뭐임?")
         `
+    
+    const [testvar, setTestvar] = useState([1, 2, 3]);
+
+    const testFunc = `
+        const a = '이게 된다고?';
+        console.log(a)
+        console.log(testvar)
+
+        setTestvar('이 안에 string이 들어갈 수 있다고?');
+    `
+    
+    useEffect(() => {
+        eval(testFunc);
+        console.log("이게 된다고 진짜?");
+    }, [])
+
+    useEffect(() => {
+        console.log(testvar);
+    }, [testvar])
+
     return (
         <div 
             className={`
-                
             `}
         >
             <script defer src="https://pyscript.net/latest/pyscript.js"></script>
