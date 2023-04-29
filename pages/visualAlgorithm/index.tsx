@@ -1,25 +1,11 @@
+import Help from "@/components/visualAlgorithm/Help";
+import Ide from "@/components/visualAlgorithm/Ide";
+import Terminal from "@/components/visualAlgorithm/Terminal";
+import VisualView from "@/components/visualAlgorithm/VisualView";
 import { useEffect, useState } from "react"
 
 export default function visualAlgorithm() {
     const [code, setCode] = useState('');
-    const code2 = `
-        import js
-        from pyodide.ffi import create_proxy, to_js
-        
-        fruits = [
-            {"name": "🍊", "count": 21},
-            {"name": "🍇", "count": 13},
-            {"name": "🍏", "count": 8},
-            {"name": "🍌", "count": 5},
-            {"name": "🍐", "count": 3},
-            {"name": "🍋", "count": 2},
-            {"name": "🍎", "count": 1},
-            {"name": "🍉", "count": 1},
-        ]
-
-        print(fruits)
-        print("뭐임?")
-        `
     
     const [testvar, setTestvar] = useState([1, 2, 3]);
 
@@ -42,25 +28,27 @@ export default function visualAlgorithm() {
 
     return (
         <div 
-            className={`
-            `}
+            className={`w-full h-full flex`}
         >
-            <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-            
-            <div className={`flex gap-2 bg-blue-100`}>
-                <textarea value={code} onChange={e => setCode(e.target.value)}></textarea>
+            <div className={`flex-col gap-2 w-full`}>
+                <div className={`flex gap-1 h-96 w-full mb-2`}>
+                    <div className="bg-red-100 p-2 basis-2/3">
+                        <VisualView />
+                    </div>
+                    <div className={`bg-yellow-100 p-2 basis-1/3`}>
+                        <Ide />
+                    </div>
+                </div>
 
-                <div
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                        <py-script>
-                        ${code2}
-                        </py-script>`,
-                    }}
-                />
+                <div className={`flex gap-1 h-40 w-full`}>
+                    <div className="bg-blue-100 p-2 basis-2/3">
+                        <Terminal />
+                    </div>
+                    <div className={`bg-purple-100 p-2 basis-1/3`}>
+                        <Help />
+                    </div>
+                </div>
             </div>
-
-            <div dangerouslySetInnerHTML={{__html: `<py-terminal />`}} />
         </div>
     )
-}   
+}
