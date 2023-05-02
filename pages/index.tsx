@@ -29,6 +29,11 @@ export default function Home() {
                 >
                     visualAlgorithm
                 </Link>
+                <Link href={`${relativePrefix}/Ide`}
+                    className={` m-2 bg-blue-100`}
+                >
+                    IDE
+                </Link>
             </div>
         </>
     )
