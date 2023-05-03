@@ -4,7 +4,7 @@ export default function IdeHome() {
 
     return (
         <>
-            <div>
+            <div className={`h-screen`}>
                 this is IDE
                 <Ide />
             </div>
