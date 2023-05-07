@@ -5,6 +5,8 @@ import { useRecoilState } from "recoil"
 export default function Ide() {
     const [code, setCode] = useRecoilState(codeState);
     const [lineChange, setLineChange] = useState(0);
+    // 현재 커서의 line number
+    const [nowCursor, setNowCursor] = useState(0);
     const [rows, setRows] = useState([1]);
 
     useEffect(() => {
@@ -18,9 +20,15 @@ export default function Ide() {
 
 
     const handleKeyEvent = function(e : KeyboardEvent) {
-        console.log(e.key === "Tab");
-
-        // onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}
+        console.log(e.key);
+        
+        if(e.key === "Tab") {
+            e.preventDefault();
+            setCode(code + "\t");
+        }
+        else if (e.key === "Enter") {
+            // Tab 수에 맞게 엔터시 들여쓰기 해주는 코드 작성.
+        }
     }
     // 두 개에 동시에 스크롤이 적용되도록 해야함.
     return (
@@ -33,7 +41,8 @@ export default function Ide() {
                 }
             </div>
             <div>
-                <textarea value={code} onChange={(e) => setCode(e.target.value)}
+                <textarea value={code} 
+                    onChange={(e) => setCode(e.target.value)}
 
                     onKeyDown={(e) => handleKeyEvent(e)}
                     className={
