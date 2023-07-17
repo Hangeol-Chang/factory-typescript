@@ -34,6 +34,11 @@ export default function Home() {
                 >
                     IDE
                 </Link>
+                <Link href={`${relativePrefix}/compass`}
+                    className={` m-2 bg-blue-100`}
+                >
+                    compass test
+                </Link>
             </div>
         </>
     )
