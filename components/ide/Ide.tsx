@@ -1,4 +1,4 @@
-import { codeState } from "@/states/visualAlgorithm/states"
+import { codeState } from "@/states/minesweeper/visualAlgorithm/states"
 import { KeyboardEvent, useEffect, useState, useRef } from "react";
 import { useRecoilState } from "recoil"
 import Button from "../common/Button";
@@ -89,7 +89,7 @@ export default function Ide() {
             <div className={`flex flex-col w-8 text-center bg-green-200 text-gray-400`}>
                 {
                     rows.map( v => {
-                        return <span>{ ("00" + v).slice(-2) }</span>
+                        return <span key={v} >{ ("00" + v).slice(-2) }</span>
                     })
                 }
             </div>

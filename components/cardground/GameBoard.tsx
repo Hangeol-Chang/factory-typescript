@@ -17,10 +17,10 @@ export default function GameBoard() {
         return (
             <>
                 {
-                    board.map( col => (
-                        <div className="flex m-2 gap-2">
+                    board.map( (col, idx) => (
+                        <div className="flex m-2 gap-2" key = {idx * 2}>
                             {
-                                col.map(val => (<GameTile />))
+                                col.map((val, idx2) => (<GameTile key={idx2 *2} />))
                             }
                         </div>
                     ))        

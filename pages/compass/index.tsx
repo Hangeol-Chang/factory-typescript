@@ -49,12 +49,11 @@ export default function Compass() {
        
         return (
             Math.abs(loc) <= 6 ?
-                <group key={idx}>
+                <group key={idx * 2}>
                     <Text
                         {...fontProps}
-                        children={val}
                         position={[realLoc * 2, 0, 2]}
-                    />
+                    >{val}</Text>
                 </group>
             : <></>
             // <mesh>
@@ -86,9 +85,9 @@ export default function Compass() {
                 }}
             >
                 <group>
-                    <Text {...fontProps} children={'RE'} position={[30,-3, 0]} />
-                    <Text {...fontProps} children={'LE'} position={[-30,-3, 0]} />
-                    <Text {...fontProps} children={'V'}  position={[0,2,1]} color={'blue'} />
+                    <Text {...fontProps} position={[30,-3, 0]} >RE</Text>
+                    <Text {...fontProps} position={[-30,-3, 0]} >LE</Text>
+                    <Text {...fontProps} position={[0,2,1]} color={'blue'} >V</Text>
                 </group>
                 <group>
                 </group>

@@ -4,7 +4,7 @@ import Terminal from "@/components/visualAlgorithm/Terminal";
 import VisualView from "@/components/visualAlgorithm/VisualView";
 import { useEffect, useState } from "react"
 
-export default function visualAlgorithm() {
+export default function VisualAlgorithm() {
     const [code, setCode] = useState('');
     
     const [testvar, setTestvar] = useState([1, 2, 3]);

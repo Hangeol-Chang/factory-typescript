@@ -39,6 +39,11 @@ export default function Home() {
                 >
                     compass test
                 </Link>
+                <Link href={`${relativePrefix}/minesweeper`}
+                    className={` m-2 bg-blue-100`}
+                >
+                    MineSweeper
+                </Link>
             </div>
         </>
     )

@@ -1,4 +1,4 @@
-import { stageState } from "@/states/visualAlgorithm/states";
+import { stageState } from "@/states/minesweeper/visualAlgorithm/states";
 import { useRecoilValue } from "recoil"
 import { useState } from "react";
 import Tile from "./atoms/Tile";
@@ -11,8 +11,8 @@ export default function VisualView() {
 
     return (
         <div>
-            <Button onClick={() => setView('problem')} value={`problem`}/>
-            <Button onClick={() => setView('board')} value={`board`}/>
+            <Button onClick={() => setView('problem')} value={`problem`} className={""} color={""}/>
+            <Button onClick={() => setView('board')} value={`board`} className={""} color={""}/>
 
             <div>
                 Stage 1
@@ -24,11 +24,11 @@ export default function VisualView() {
             <hr />
             
             {
-                stage.map.map( row => (
-                    <div className={`flex gap-1 m-1`}>
+                stage.map.map( (row, idx) => (
+                    <div className={`flex gap-1 m-1`} key={idx * 2}>
                         {
                             row.map( ele => (
-                                <Tile size={size} state={ele} />
+                                <Tile size={size} state={ele} key={ele}/>
                             ))
                         }
                     </div>
