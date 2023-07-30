@@ -4,18 +4,19 @@ declare global {
     /*
     *** TileType description
         state :
-            - 0 : hidden
-            - 1 : open
-            - 2 : check
+            - hidden
+            - open
+            - check
+            - hoevr
 
         value :
             - 0 : none(bug State)
             - 1 ~ n : number
             - -1 : mine
     */
-   export class TileType {
-       state : number;
-       value : number;
+   export type TileType = {
+        state : string;
+        value : number;
    }
 }
 

@@ -4,19 +4,35 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil"
 
 export default function MineSweeper() {
-    const [map, SetMap] = useRecoilState<Array<Array<TileType>>>(mapState);
-    const [mapSize, SetMapSize] = useRecoilState(mapSizeState);
-    const [mines, SetMines] = useState<Array<number[]> | null>([]);
-    const [mineCount, SetMinsCount] = useState<number>(20);
+    const [map, setMap] = useRecoilState<Array<Array<TileType>>>(mapState);
+    const [mapSize, setMapSize] = useRecoilState(mapSizeState);
+    const [mines, setMines] = useState<Array<number[]> | null>([]);
+    const [mineCount, setMinsCount] = useState<number>(20);
 
 
-    const clickTile = function(tile : TileType) {
+    const clickTile = function(idf : number) {
+        const r = Math.floor(idf / 100);
+        const c = Math.floor(idf % 100);
 
+        // console.log(Math.floor(idf/100), idf%100);
+        // let copyMap = [...map];
+        let copyMap = JSON.parse(JSON.stringify(map));
+
+        const temptile : TileType = {
+            state: 'open',
+            value: map[r][c].value,
+        }
+        // console.log(copyMap[r][c]);
+        console.log(     copyMap[r][c].state);
+        copyMap[r][c].state = 'open';
+
+        // copyMap[r][c];
+        setMap(copyMap);
     }
 
     const maketMines = function() {
         for(let i = 0; i < mineCount; i++) {
-
+            
         }
     }
 
@@ -24,7 +40,7 @@ export default function MineSweeper() {
         let newmap : Array<Array<TileType>> = [];
         let maprow : Array<TileType> = [];
         const temptile : TileType = {
-            state : 0,
+            state : 'hidden',
             value : 0,
         }   
         for(let i = 0; i < mapSize[1]; i++) {
@@ -34,7 +50,7 @@ export default function MineSweeper() {
 
         // 지뢰 심으면서 지뢰 주변 숫자 늘리기.
 
-        SetMap(newmap);
+        setMap(newmap);
     }
     // init 초기화
     useEffect(() => {
@@ -43,16 +59,28 @@ export default function MineSweeper() {
     }, [])
 
     return (
-        <div>
+        <div
+            className={`
+                flex flex-col items-center
+            `}
+        >
             지뢰찾기 입니다.
-            {map.map((row, idx) => (
-                <div>
-                    {row.map((tileval, idx) => (
-                        <Tile 
-                            className={``} 
+            {map.map((row, rowidx) => (
+                <div
+                    key={rowidx * 2}
+                    className={`
+                        flex
+                        items-center
+                    `}
+                >
+                    {row.map((tileval, colidx) => (
+                        <Tile
+                            key={colidx * 2}
+                            className={``}
+                            idf={rowidx * 100 + colidx}
                             tile={tileval}
                             onClick={clickTile}
-                            style={'hidden'}
+                            size={[40, 40]}
                         ></Tile>
                     ))}
                 </div>

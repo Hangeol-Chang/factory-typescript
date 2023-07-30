@@ -1,4 +1,4 @@
-import { codeState } from "@/states/minesweeper/visualAlgorithm/states"
+import { codeState } from "@/states/visualAlgorithm/states"
 import { KeyboardEvent, useEffect, useState, useRef } from "react";
 import { useRecoilState } from "recoil"
 import Button from "../common/Button";

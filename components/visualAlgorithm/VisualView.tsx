@@ -1,4 +1,4 @@
-import { stageState } from "@/states/minesweeper/visualAlgorithm/states";
+import { stageState } from "@/states/visualAlgorithm/states";
 import { useRecoilValue } from "recoil"
 import { useState } from "react";
 import Tile from "./atoms/Tile";

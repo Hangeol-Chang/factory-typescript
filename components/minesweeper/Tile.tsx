@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 type ButtonStyle = {
@@ -15,16 +15,16 @@ const ButtonStyles: ButtonStylePack = {
         bgColor : '#AAAAAA',
         color : '',
     },
-    'check' : {
-        bgColor : '',
-        color : '',
-    },
     'open' : {
         bgColor : '#EEEEEE',
         color : '',
     },
-    'success-outline' : {
+    'check' : {
         bgColor : '',
+        color : '',
+    },
+    'hover' : {
+        bgColor : '#444444',
         color : '',
     }
 }
@@ -32,30 +32,49 @@ const ButtonStyles: ButtonStylePack = {
 
 export default function Tile(
     props : { 
-        className : string, 
+        className : string,
+        idf : number,
         tile : TileType, 
-        onClick : (tile : TileType) => void,
-        style : string
+        onClick : (idf : number) => void,
+        size : number[]
     }) {
-    const { className, tile, onClick, style } = props;
-    const [btStyle, SetBtStyle] = useState(ButtonStyles[style != null ? style : 'primary']);
+    const { className, idf, tile, onClick, size } = props;
 
+    const [style, setStyle] = useState(tile.state);
+    const [btStyle, setBtStyle] = useState(ButtonStyles[style != null ? style : 'primary']);
+
+    const hoverIn = function() {
+        setStyle('hover');
+    }
+    const hoverOut = function() {
+        setStyle(tile.state);
+    }
+
+    useEffect(() => {
+        setBtStyle(ButtonStyles[style])
+    }, [style])
 
     return (
         <button
             className={`
-                w-20
-                h-20
-                m-1
-                
+                m-1                
                 ${className}
             `}
             style={{
+                width : size[0],
+                height : size[1],
                 backgroundColor : btStyle.bgColor,
             }}
-            onClick={() => onClick(tile)}
+            onClick={() => onClick(idf)}
+
+            onMouseEnter={() => hoverIn()}
+            onMouseLeave={() => hoverOut()}
         >
-            {tile.value}
+            {
+                tile.state == "open" 
+                ? <>{tile.value}</>
+                : <></>
+            }
         </button>
     )
 }
