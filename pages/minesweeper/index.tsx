@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil"
 export default function MineSweeper() {
     const [map, setMap] = useRecoilState<Array<Array<TileType>>>(mapState);
     const [mapSize, setMapSize] = useRecoilState(mapSizeState);
-    const [mines, setMines] = useState<Array<number[]> | null>([]);
+    const [mines, setMines] = useState<Array<number[]>>([]);
     const [mineCount, setMinsCount] = useState<number>(20);
 
 
@@ -31,8 +31,17 @@ export default function MineSweeper() {
     }
 
     const maketMines = function() {
+        const maxR = mapSize[0] - 1;
+        const maxC = mapSize[1] - 1;
+
         for(let i = 0; i < mineCount; i++) {
-            
+            let mine : number[] = [0, 0];
+            while(true) {
+                mine[0] = Math.floor(Math.random() * maxR);
+                mine[1] = Math.floor(Math.random() * maxC);
+                
+                if(!mines.includes(mine)) break;
+            }
         }
     }
 
