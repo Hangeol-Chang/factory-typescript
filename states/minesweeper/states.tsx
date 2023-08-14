@@ -28,7 +28,7 @@ const mapState = atom<Array<Array<TileType>>> ({
 
 const mapSizeState = atom<Array<number>> ({
     key : 'mapSizeState',
-    default : [10, 10]
+    default : [13, 13]
 })
 
 export {

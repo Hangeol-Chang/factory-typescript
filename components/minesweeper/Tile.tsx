@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, MouseEvent } from "react"
 
 
 type ButtonStyle = {
@@ -36,9 +36,10 @@ export default function Tile(
         idf : number,
         tile : TileType, 
         onClick : (idf : number) => void,
+        rightClick : (e : MouseEvent, idf : number) => void,
         size : number[]
     }) {
-    const { className, idf, tile, onClick, size } = props;
+    const { className, idf, tile, onClick, rightClick, size } = props;
 
     const [style, setStyle] = useState(tile.state);
     const [btStyle, setBtStyle] = useState(ButtonStyles[style != null ? style : 'primary']);
@@ -49,6 +50,9 @@ export default function Tile(
     const hoverOut = function() {
         setStyle(tile.state);
     }
+    useEffect(() => {
+        setStyle(tile.state);
+    }, [tile.state])
 
     useEffect(() => {
         setBtStyle(ButtonStyles[style])
@@ -66,6 +70,7 @@ export default function Tile(
                 backgroundColor : btStyle.bgColor,
             }}
             onClick={() => onClick(idf)}
+            onContextMenu={(e) => rightClick(e, idf)}
 
             onMouseEnter={() => hoverIn()}
             onMouseLeave={() => hoverOut()}
