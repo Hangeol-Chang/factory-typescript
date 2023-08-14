@@ -1,6 +1,6 @@
 import Tile from "@/components/minesweeper/Tile";
 import { mapSizeState, mapState } from "@/states/minesweeper/states"
-import { useEffect, useState } from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import { useRecoilState } from "recoil"
 
 export default function MineSweeper() {
