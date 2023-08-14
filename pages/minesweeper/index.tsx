@@ -6,8 +6,8 @@ import { useRecoilState } from "recoil"
 export default function MineSweeper() {
     const [map, setMap] = useRecoilState<Array<Array<TileType>>>(mapState);
     const [mapSize, setMapSize] = useRecoilState(mapSizeState);
-    const [mines, setMines] = useState<Array<number[]> | null>([]);
-    const [mineCount, setMinsCount] = useState<number>(30);
+    const [mines, setMines] = useState<Array<number[]>>([]);
+    const [mineCount, setMinsCount] = useState<number>(25);
 
     const gameOver = function() {
         console.log("game over");
@@ -54,10 +54,9 @@ export default function MineSweeper() {
 
     const rightClick = function(e : MouseEvent, idf : number) {
         e.preventDefault();
-
     }
 
-    const maketMines = function() {
+    const makeMines = function() {
         let dupChecker : number[] = [];
         let newmines : Array<number[]> = [];
 
@@ -120,7 +119,7 @@ export default function MineSweeper() {
     }
     // init 초기화
     useEffect(() => {
-        const tmpMines : Array<number[]> = maketMines();
+        const tmpMines : Array<number[]> = makeMines();
         makeMap(tmpMines);
     }, [])
 
