@@ -44,6 +44,11 @@ export default function Home() {
                 >
                     MineSweeper
                 </Link>
+                <Link href={`${relativePrefix}/kamen`}
+                    className={` m-2 bg-blue-100`}
+                >
+                    KAMEN
+                </Link>
             </div>
         </>
     )
